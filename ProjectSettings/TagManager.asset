@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Portal
   - PlayerWeapon
+  - EnemyDead
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Player
   - PlayerDamaged
   - PlayerWeapon
-  - 
+  - EnemyDead
   - 
   - 
   - 
