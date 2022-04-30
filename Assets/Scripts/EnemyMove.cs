@@ -11,6 +11,8 @@ public class EnemyMove : MonoBehaviour
     Animator anim;
     CapsuleCollider2D Capsulecollider;
 
+    public GameManager gameManager;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -23,13 +25,13 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey("x"))
+        /*if (Input.GetKey("x"))
         {
             if(Mathf.Abs(GameObject.FindWithTag("Player").transform.position.x - transform.position.x) < 1 && Mathf.Abs(GameObject.FindWithTag("Player").transform.position.y - transform.position.y) < 1)
             {
                 DeActive();
             }
-        }
+        }*/
     }
 
     void FixedUpdate()

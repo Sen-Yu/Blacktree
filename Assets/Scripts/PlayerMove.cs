@@ -19,6 +19,7 @@ public class PlayerMove : MonoBehaviour
     public float jumpPower;
 
     public GameObject weaponCollider;
+    public GameObject consumCollider;
     SpriteRenderer weaponSpriteRenderer;
     Vector2 weaponVector;
     Animator weaponAnim;

@@ -9,6 +9,7 @@ TagManager:
   - Portal
   - PlayerWeapon
   - EnemyDead
+  - PlayerConsume
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - PlayerDamaged
   - PlayerWeapon
   - EnemyDead
-  - 
+  - PlayerConsume
   - 
   - 
   - 
