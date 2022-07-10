@@ -22,6 +22,8 @@ public class PlayerMove : MonoBehaviour
 
     AudioSource audioSource;
 
+    public float jumpHeight = 3f;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -33,9 +35,11 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         //Jump
-        if (Input.GetButtonDown("Jump") && !anim.GetBool("isJumping"))
+        if (Input.GetButton("Jump") && !anim.GetBool("isJumping"))
         {
-            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            Vector3 jumpVelocity = Vector3.up * Mathf.Sqrt(jumpHeight * - Physics.gravity.y);
+            rigid.AddForce(jumpVelocity, ForceMode2D.Impulse);
+            // rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
             PlaySound("JUMP");
         }
