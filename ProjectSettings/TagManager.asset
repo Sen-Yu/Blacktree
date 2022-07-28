@@ -10,6 +10,11 @@ TagManager:
   - PlayerWeapon
   - EnemyDead
   - PlayerConsume
+  - EnemyHitBox
+  - Projectile
+  - WallCheck0
+  - WallCheck1
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -25,8 +30,8 @@ TagManager:
   - PlayerWeapon
   - EnemyDead
   - PlayerConsume
-  - 
-  - 
+  - EnemyHitBox
+  - Projectile
   - 
   - 
   - 
