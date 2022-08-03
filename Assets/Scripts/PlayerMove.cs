@@ -51,8 +51,10 @@ public class PlayerMove : MonoBehaviour
         //Idle, Run Animation
         if (Mathf.Abs(rigid.velocity.x) < 0.3)
             anim.SetBool("isRunning", false);
-        else
+        else { 
             anim.SetBool("isRunning", true);
+           
+        }
     }
 
     void FixedUpdate()
@@ -72,7 +74,7 @@ public class PlayerMove : MonoBehaviour
         Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
 
         RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
-        if (rigid.velocity.y < 0 && rayHit.collider != null && rayHit.distance < 0.5f)
+        if (rigid.velocity.y < 0 && rayHit.collider != null && rayHit.distance < 1.1f)
         {
             anim.SetBool("isJumping", false);
         }
