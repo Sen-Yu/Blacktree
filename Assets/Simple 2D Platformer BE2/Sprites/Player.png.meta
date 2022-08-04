@@ -51,7 +51,10 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+<<<<<<< HEAD
   ignoreMasterTextureLimit: 0
+=======
+>>>>>>> upstream/main
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0

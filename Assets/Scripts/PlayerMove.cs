@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
+[SelectionBase]
+
 public class PlayerMove : MonoBehaviour
 {
     public GameManager gameManager;
@@ -15,14 +17,24 @@ public class PlayerMove : MonoBehaviour
 
     public float maxSpeed;
     public float jumpPower;
-    //public GameObject weaponCollider;
+
+    public GameObject weaponCollider;
+    public GameObject consumCollider;
+    SpriteRenderer weaponSpriteRenderer;
+    Vector2 weaponVector;
+    Animator weaponAnim;
+
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
 
     AudioSource audioSource;
 
+<<<<<<< HEAD
     public float jumpHeight = 3f;
+=======
+    public bool facingRight = true;
+>>>>>>> upstream/main
 
     void Awake()
     {
@@ -30,6 +42,8 @@ public class PlayerMove : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        weaponAnim = weaponCollider.GetComponent<Animator>();
+        //weaponSpriteRenderer = weaponCollider.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -50,15 +64,47 @@ public class PlayerMove : MonoBehaviour
 
         //Set Sprite Direction
         if (Input.GetButton("Horizontal"))
+        {
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+        }
 
         //Idle, Run Animation
         if (Mathf.Abs(rigid.velocity.x) < 0.3)
             anim.SetBool("isRunning", false);
         else { 
             anim.SetBool("isRunning", true);
+<<<<<<< HEAD
            
         }
+=======
+
+
+        /*if (Input.GetButton("Horizontal"))
+        {
+            //weaponSpriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;\
+            if(spriteRenderer.flipX)
+            {
+                weaponVector = weaponCollider.transform.localPosition;
+                weaponVector.x = -0.9f;
+                weaponCollider.transform.localPosition = weaponVector;
+            }
+            else
+            {
+                weaponVector = weaponCollider.transform.localPosition;
+                weaponVector.x = 0.9f;
+                weaponCollider.transform.localPosition = weaponVector;
+            }
+        }*/
+
+        if (Input.GetKey("z"))
+        {
+            if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")){
+                anim.SetTrigger("doAttack");
+                weaponAnim.SetTrigger("doAttack");
+            }
+        }
+    }
+>>>>>>> upstream/main
 
         //Spin - Attack
         if(Input.GetKey(KeyCode.Z))
@@ -99,6 +145,12 @@ public class PlayerMove : MonoBehaviour
         {
             anim.SetBool("isJumping", false);
         }
+
+        float d = Input.GetAxis("Horizontal");
+        if(d > 0 && !facingRight)
+            Flip();
+        else if(d < 0 && facingRight)
+            Flip();
     }
 
     //Collision Event
@@ -141,13 +193,13 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    void OnAttack(Transform enemy)
+    /*void OnAttack(Transform enemy)
     {
         //Enemy Die
         EnemyMove enemyMove = enemy.GetComponent<EnemyMove>();
         enemyMove.OnDamaged();
         PlaySound("ATTACK");
-    }
+    }*/
 
     void OnDamaged(Vector2 targetPos)
     {
@@ -222,8 +274,18 @@ public class PlayerMove : MonoBehaviour
         audioSource.Play();
     }
 
-    /*public void WeaponColliderOnOff ()
+
+    void Flip ()
     {
-        weaponCollider.SetActive (weaponCollider.activeHierarchy);
+        facingRight = !facingRight;
+        Vector3 theScale = weaponCollider.transform.localPosition;
+        theScale.x *= -1;
+        weaponCollider.transform.localPosition = theScale;
+        weaponCollider.transform.Rotate(0,180,0);
+    }
+
+    /*public void WeaponColliderOnOff()
+    {
+        weaponCollider.SetActive (!weaponCollider.activeInHierarchy);
     }*/
 }

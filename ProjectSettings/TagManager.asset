@@ -8,6 +8,13 @@ TagManager:
   - Item
   - Portal
   - PlayerWeapon
+  - EnemyDead
+  - PlayerConsume
+  - EnemyHitBox
+  - Projectile
+  - WallCheck0
+  - WallCheck1
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -21,10 +28,10 @@ TagManager:
   - Player
   - PlayerDamaged
   - PlayerWeapon
-  - 
-  - 
-  - 
-  - 
+  - EnemyDead
+  - PlayerConsume
+  - EnemyHitBox
+  - Projectile
   - 
   - 
   - 
