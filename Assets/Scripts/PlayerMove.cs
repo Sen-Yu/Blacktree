@@ -55,8 +55,25 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("isRunning", true);
            
         }
-    }
 
+        //Spin - Attack
+        if(Input.GetKey(KeyCode.Z))
+        {
+            anim.SetBool("isSpinning", true);
+            KeyDown_Z();
+            //add attack state -> not do damaged
+        }
+        else { 
+            anim.SetBool("isSpinning", false);
+           
+        }
+
+
+    }
+    private void KeyDown_Z()
+    {
+        Debug.Log("Z");
+    }
     void FixedUpdate()
     {
         //Move By Control
