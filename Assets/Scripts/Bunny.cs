@@ -64,21 +64,15 @@ public class Bunny : Monster
                 rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
                 if (!Physics2D.OverlapCircle(wallCheck[0].position, 0.05f, layerMask) &&
-                    Physics2D.OverlapCircle(wallCheck[1].position, 0.05f, layerMask) &&
-                    !Physics2D.Raycast(transform.position, -transform.localScale.x * transform.right, 1f, layerMask))
+                    Physics2D.OverlapCircle(wallCheck[1].position, 0.05f, layerMask))
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                    if(Random.Range(-1, 2) ==0){
+                        MonsterFlip();
+                    }
+                    else{
+                        rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                    }
                 }
-                /*else if(Physics2D.Raycast(wallCheck[0].position, Vector2.left, 1, layerMask))
-                {
-                    MonsterFlip ( );
-                    Debug.Log("fliped");
-                }*/
-                /*else if (Physics2D.OverlapCircle(wallCheck[0].position, 0.3f, layerMask))
-                {
-                    MonsterFlip ( );
-                    Debug.Log("fliped");
-                }*/
 
                 if(IsPlayerDir() && isGround && canAtk)
                 {
@@ -137,25 +131,4 @@ public class Bunny : Monster
             }
         }
     }
-
-    /*void OnCollisionEnter2D(Collision2D collision) 
-    {
-        if(collision.gameObject.tag == "Platform")
-        {
-            MonsterFlip ( );
-            Debug.Log("fliped");
-        }
-    }*/
-
-    /*void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("worked2");
-
-        if(collision.gameObject.tag == "Platform")
-        {
-            MonsterFlip ( );
-            Debug.Log("fliped");
-        }
-
-    }*/
 }

@@ -20,16 +20,16 @@ public class Mushroom : Monster
         if (!isHit)
         {
             rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
-
             if (!Physics2D.OverlapCircle(wallCheck[0].position, 0.05f, layerMask) &&
-                Physics2D.OverlapCircle(wallCheck[1].position, 0.05f, layerMask) &&
-                !Physics2D.Raycast ( transform.position, -transform.localScale.x * transform.right, 1f, layerMask))
+                Physics2D.OverlapCircle(wallCheck[1].position, 0.05f, layerMask) /*&&
+                !Physics2D.Raycast ( transform.position, -transform.localScale.x * transform.right, 0.1f, layerMask)*/)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-            }
-            else if (Physics2D.OverlapCircle(wallCheck[1].position, 0.05f, layerMask))
-            {
-                MonsterFlip();
+                if(Random.Range(-1, 2) ==0){
+                     MonsterFlip();
+                }
+                else{
+                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                }
             }
         }
     }

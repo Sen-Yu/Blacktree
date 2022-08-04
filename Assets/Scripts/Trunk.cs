@@ -60,9 +60,15 @@ public class Trunk : Monster
         {
             rb.velocity = new Vector2(-transform.localScale.x * moveSpeed, rb.velocity.y);
 
-            if (Physics2D.OverlapCircle(wallCheck[1].position, 0.05f, layerMask))
+            if (!Physics2D.OverlapCircle(wallCheck[0].position, 0.05f, layerMask) &&
+                Physics2D.OverlapCircle(wallCheck[1].position, 0.05f, layerMask))
             {
-                MonsterFlip();
+                if(Random.Range(-1, 2) ==0){
+                    MonsterFlip();
+                }
+                else{
+                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                }
             }
 
             if(canAtk && IsPlayerDir())
