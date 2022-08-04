@@ -55,10 +55,29 @@ public class PlayerMove : MonoBehaviour
         //Idle, Run Animation
         if (Mathf.Abs(rigid.velocity.x) < 0.3)
             anim.SetBool("isRunning", false);
-        else
+        else { 
             anim.SetBool("isRunning", true);
-    }
+           
+        }
 
+        //Spin - Attack
+        if(Input.GetKey(KeyCode.Z))
+        {
+            anim.SetBool("isSpinning", true);
+            KeyDown_Z();
+            //add attack state -> not do damaged
+        }
+        else { 
+            anim.SetBool("isSpinning", false);
+           
+        }
+
+
+    }
+    private void KeyDown_Z()
+    {
+        Debug.Log("Z");
+    }
     void FixedUpdate()
     {
         //Move By Control
@@ -76,7 +95,7 @@ public class PlayerMove : MonoBehaviour
         Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
 
         RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
-        if (rigid.velocity.y < 0 && rayHit.collider != null && rayHit.distance < 0.5f)
+        if (rigid.velocity.y < 0 && rayHit.collider != null && rayHit.distance < 1.1f)
         {
             anim.SetBool("isJumping", false);
         }
